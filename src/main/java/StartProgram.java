@@ -17,7 +17,7 @@ public class StartProgram extends JFrame {
         im.put(KeyStroke.getKeyStroke("ESCAPE"), "confirm-exit");
         am.put("confirm-exit", new AbstractAction() {
             @Override public void actionPerformed(ActionEvent e) {
-                tryClose();
+                closeAppDialogOption();
             }
         });
     }
@@ -30,7 +30,7 @@ public class StartProgram extends JFrame {
     }
 
     // For dialog - ESC - closing app yes/no
-    private void tryClose() {
+    private void closeAppDialogOption() {
         boolean ok = ConfirmDialogs.showExitDialog(this, "Exit application?", "Are you sure you want to exit?");
         if (ok) {
             // exit fullscreen

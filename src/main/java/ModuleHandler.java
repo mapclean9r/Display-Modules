@@ -9,6 +9,7 @@ public class ModuleHandler {
     private final Reflections reflections = new Reflections("modules");
     private final Set<Class<?>> collectedModules = reflections.getTypesAnnotatedWith(ModuleAlias.class);
     private final StartProgram window;
+    
     public ModuleHandler(StartProgram startProgram) {
         this.window = startProgram;
         addModulesToFrame();
