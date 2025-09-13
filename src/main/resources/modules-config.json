@@ -6,8 +6,8 @@
       "active": true
     },
     {
-      "alias": "weather-module",
-      "active": false
+      "alias": "hello-module-default",
+      "active": true
     },
     {
       "alias": "todo-module",

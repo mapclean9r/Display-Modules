@@ -38,7 +38,7 @@ public class StartProgram extends JFrame {
         JScrollPane scroll = new JScrollPane(
                 grid,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED
         );
         scroll.setBorder(null);
         scroll.setOpaque(false);

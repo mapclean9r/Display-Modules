@@ -1,13 +1,7 @@
 {
   "grid": { "cols": 3, "rows": 2 },
   "placements": [
-    { "alias": "open slot",            "row": 0, "col": 0 },
-    { "alias": "open slot",            "row": 0, "col": 1 },
-    { "alias": "open slot",            "row": 0, "col": 2 },
-    { "alias": "open slot",            "row": 0, "col": 3 },
-    { "alias": "open slot",            "row": 1, "col": 0 },
-    { "alias": "clock-module-default", "row": 1, "col": 1 },
-    { "alias": "open slot",            "row": 1, "col": 2 },
-    { "alias": "open slot",            "row": 1, "col": 3 }
+    { "alias": "hello-module-default", "row": 0, "col": 1 },
+    { "alias": "clock-module-default", "row": 1, "col": 1 }
   ]
 }
