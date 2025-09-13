@@ -24,7 +24,7 @@ public class ModuleHandler {
 
     public void addModulesToFrame(){
         for (Class<?> clazz : collectedModules){
-            if (IncludeModule.class.isAssignableFrom(clazz) && configIsToLoad(clazz.getAnnotation(ModuleAlias.class).value())){
+            if (IncludeModule.class.isAssignableFrom(clazz) && isConfigToLoad(clazz.getAnnotation(ModuleAlias.class).value())){
                 try {
                     IncludeModule task = (IncludeModule) clazz.getDeclaredConstructor().newInstance();
                     window.setContentPane(task.RunModule());
@@ -37,9 +37,9 @@ public class ModuleHandler {
         }
     }
 
-    private boolean configIsToLoad(String moduleName){
+    private boolean isConfigToLoad(String moduleName){
         for (ModuleConfig.ModuleEntry config : moduleConfig.getModules()){
-            System.out.println(moduleName + " | and | " + config.getAlias());
+            //System.out.println(moduleName + " | and | " + config.getAlias());
             if (Objects.equals(moduleName, config.getAlias()) && config.isActive()){
                 return true;
             }
