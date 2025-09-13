@@ -2,12 +2,12 @@
   "grid": { "cols": 4, "rows": 2 },
   "placements": [
     { "alias": "clock-module-default", "row": 0, "col": 0 },
-    { "alias": "todo-module",           "row": 0, "col": 1 },
-    { "alias": "news-module",           "row": 0, "col": 2 },
-    { "alias": "weather-module",        "row": 0, "col": 3 },
-    { "alias": "stats-module",          "row": 1, "col": 0 },
-    { "alias": "chat-module",           "row": 1, "col": 1 },
-    { "alias": "system-module",         "row": 1, "col": 2 },
-    { "alias": "graph-module",          "row": 1, "col": 3 }
+    { "alias": "open slot",            "row": 0, "col": 1 },
+    { "alias": "open slot",            "row": 0, "col": 2 },
+    { "alias": "open slot",            "row": 0, "col": 3 },
+    { "alias": "open slot",            "row": 1, "col": 0 },
+    { "alias": "open slot",            "row": 1, "col": 1 },
+    { "alias": "open slot",            "row": 1, "col": 2 },
+    { "alias": "open slot",            "row": 1, "col": 3 }
   ]
 }
