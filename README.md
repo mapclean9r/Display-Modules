@@ -3,7 +3,7 @@
 A modular **Java-based dashboard** inspired by MagicMirror².  
 This project lets you display different modules in a **grid layout**, such as a clock, weather, statistics, and other widgets.
 
-![screenshot](others/dc.png)
+![screenshot](src/main/java/others/dc.png)
 
 ---
 
