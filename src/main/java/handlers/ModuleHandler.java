@@ -28,7 +28,7 @@ public class ModuleHandler {
                 try {
                     IncludeModule task = (IncludeModule) clazz.getDeclaredConstructor().newInstance();
                     //window.setContentPane(task.RunModule());
-                    //todo config for r c
+                    //todo config for row col
                     window.setModuleAt(0, 1, task.RunModule());
 
                 } catch (InvocationTargetException | InstantiationException | IllegalAccessException |

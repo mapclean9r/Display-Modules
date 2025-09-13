@@ -24,7 +24,7 @@ public class StartProgram extends JFrame {
             }
         });
 
-        grid.configureGrid(15, 7);
+        grid.configureGrid(2, 2);
         grid.setPadding(new Insets(24,24,24,24));
         grid.setGaps(24, 24);
 
