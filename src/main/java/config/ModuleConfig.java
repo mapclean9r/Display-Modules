@@ -17,6 +17,7 @@ public class ModuleConfig {
         private String alias;
         private boolean active;
         private Map<String, Object> settings;
+        //todo add settings for font size and mby something else
 
         public String getAlias() { return alias; }
         public void setAlias(String alias) { this.alias = alias; }

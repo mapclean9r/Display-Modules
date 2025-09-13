@@ -27,7 +27,9 @@ public class ModuleHandler {
             if (IncludeModule.class.isAssignableFrom(clazz) && isConfigToLoad(clazz.getAnnotation(ModuleAlias.class).value())){
                 try {
                     IncludeModule task = (IncludeModule) clazz.getDeclaredConstructor().newInstance();
-                    window.setContentPane(task.RunModule());
+                    //window.setContentPane(task.RunModule());
+                    //todo config for r c
+                    window.setModuleAt(0, 1, task.RunModule());
 
                 } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                          NoSuchMethodException e ) {
@@ -37,6 +39,7 @@ public class ModuleHandler {
         }
     }
 
+    /** Checks if the module in config is enabled && exists **/
     private boolean isConfigToLoad(String moduleName){
         for (ModuleConfig.ModuleEntry config : moduleConfig.getModules()){
             //System.out.println(moduleName + " | and | " + config.getAlias());

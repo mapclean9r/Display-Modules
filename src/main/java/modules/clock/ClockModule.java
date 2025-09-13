@@ -14,7 +14,7 @@ public class ClockModule implements IncludeModule {
     public JComponent RunModule() {
         var panel = new JPanel(new BorderLayout());
 
-        var clock = new JLabel("clock", SwingConstants.CENTER);
+        var clock = new JLabel("clock-module-default", SwingConstants.CENTER);
         clock.setFont(clock.getFont().deriveFont(Font.BOLD, 32f));
         var fmt = new SimpleDateFormat("HH:mm:ss");
         new Timer(1000, e -> clock.setText(fmt.format(new Date()))).start();

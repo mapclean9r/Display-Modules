@@ -10,7 +10,6 @@ public class App {
         SwingUtilities.invokeLater(() -> {
             ModuleConfig configLoader = ConfigLoader.loadConfig("src/main/resources/module-config.json");
 
-
             StartProgram window = new StartProgram("Modular Display");
             window.setFullScreen();
 
@@ -18,4 +17,5 @@ public class App {
         });
 
     }
+
 }
