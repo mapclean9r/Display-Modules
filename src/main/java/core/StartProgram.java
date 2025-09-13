@@ -1,5 +1,7 @@
 package core;
 
+import config.LayoutConfig;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +10,7 @@ public class StartProgram extends JFrame {
     private GraphicsDevice device;
     private final CreateGrid grid = new CreateGrid();
 
-    public StartProgram(String title) {
+    public StartProgram(String title, LayoutConfig layoutConfig) {
         super(title);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
@@ -24,7 +26,7 @@ public class StartProgram extends JFrame {
             }
         });
 
-        grid.configureGrid(2, 2);
+        grid.configureGrid(layoutConfig.getGrid().getCols(), layoutConfig.getGrid().getRows());
         grid.setPadding(new Insets(24,24,24,24));
         grid.setGaps(24, 24);
 

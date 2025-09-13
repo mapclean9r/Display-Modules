@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateGrid extends JPanel {
-    private int cols = 4;
+    private int cols = 3;
     private int rows = 2;
     private int hgap = 16, vgap = 16;
     private Insets padding = new Insets(16,16,16,16);
@@ -21,13 +21,15 @@ public class CreateGrid extends JPanel {
     /** sets current col, row **/
     public void configureGrid(int cols, int rows) {
         if (cols <= 0 || rows <= 0) throw new IllegalArgumentException("cols/rows must higher than 0");
-        this.cols = cols; this.rows = rows;
+        this.cols = cols;
+        this.rows = rows;
         relayout();
     }
 
     /** gaps between each grid block **/
     public void setGaps(int hgap, int vgap) {
-        this.hgap = hgap; this.vgap = vgap;
+        this.hgap = hgap;
+        this.vgap = vgap;
         relayout();
     }
 
