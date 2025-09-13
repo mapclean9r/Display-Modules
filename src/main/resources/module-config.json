@@ -1,0 +1,17 @@
+{
+  "type": "module-config",
+  "modules": [
+    {
+      "alias": "clock-module-default",
+      "active": true
+    },
+    {
+      "alias": "weather-module",
+      "active": false
+    },
+    {
+      "alias": "todo-module",
+      "active": true
+    }
+  ]
+}
