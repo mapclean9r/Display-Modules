@@ -8,22 +8,19 @@ import java.util.Set;
 public class ModuleHandler {
     private final Reflections reflections = new Reflections("modules");
     private final Set<Class<?>> collectedModules = reflections.getTypesAnnotatedWith(ModuleAlias.class);
-    public ModuleHandler() {
+    private final StartProgram window;
+    public ModuleHandler(StartProgram startProgram) {
+        this.window = startProgram;
         addModulesToFrame();
     }
 
     public void addModulesToFrame(){
-
         for (Class<?> clazz : collectedModules){
             if (IncludeModule.class.isAssignableFrom(clazz)){
                 try {
                     IncludeModule task = (IncludeModule) clazz.getDeclaredConstructor().newInstance();
-                    ModuleAlias annotation = clazz.getAnnotation(ModuleAlias.class);
+                    window.setContentPane(task.RunModule());
 
-                    System.out.println("------\n" + "Class: " + clazz.getName() +
-                            "\nAnnotation Value: " + annotation.value() + "\n------");
-
-                    task.RunModule();
                 } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
                          NoSuchMethodException e ) {
                     throw new RuntimeException(e);

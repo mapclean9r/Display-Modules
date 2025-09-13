@@ -5,8 +5,8 @@ public class App {
         SwingUtilities.invokeLater(() -> {
             StartProgram window = new StartProgram("Modular Display");
             window.setFullScreen();
+            ModuleHandler moduleHandler = new ModuleHandler(window);
         });
-        //ignore under
-        ModuleHandler moduleHandler = new ModuleHandler();
+
     }
 }

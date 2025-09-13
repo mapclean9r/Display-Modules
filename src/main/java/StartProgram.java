@@ -10,12 +10,6 @@ public class StartProgram extends JFrame {
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
 
-        // dummy
-        var label = new JLabel("Hello World :O", SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(Font.BOLD, 36f));
-        add(label, BorderLayout.CENTER);
-
-
         // ESC - ask to close app , opens dialog
         var root = getRootPane();
         var im = root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);

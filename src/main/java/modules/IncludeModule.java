@@ -1,5 +1,7 @@
 package modules;
 
+import javax.swing.*;
+
 public interface IncludeModule {
-    void RunModule();
+    JComponent RunModule();
 }
