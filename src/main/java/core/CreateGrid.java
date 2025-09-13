@@ -104,6 +104,7 @@ public class CreateGrid extends JPanel {
     private JComponent wrapAsCard(JComponent content) {
         JPanel card = new JPanel(new BorderLayout());
         content.setOpaque(false);
+        card.setOpaque(false);
         card.add(content, BorderLayout.CENTER);
         return card;
     }

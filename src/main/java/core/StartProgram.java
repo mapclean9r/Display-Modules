@@ -1,5 +1,6 @@
 package core;
 
+import config.Background;
 import config.LayoutConfig;
 
 import javax.swing.*;
@@ -15,7 +16,10 @@ public class StartProgram extends JFrame {
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
 
-        /** ESC - ask to close app , opens dialog (move later) **/
+        Background background = new Background();
+        background.setLayout(new BorderLayout());
+        setContentPane(background);
+
         var root = getRootPane();
         var im = root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         var am = root.getActionMap();
@@ -26,13 +30,21 @@ public class StartProgram extends JFrame {
             }
         });
 
+        grid.setOpaque(false);
         grid.configureGrid(layoutConfig.getGrid().getCols(), layoutConfig.getGrid().getRows());
-        grid.setPadding(new Insets(24,24,24,24));
+        grid.setPadding(new Insets(24, 24, 24, 24));
         grid.setGaps(24, 24);
 
-        setContentPane(new JScrollPane(grid,
+        JScrollPane scroll = new JScrollPane(
+                grid,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER));
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        scroll.setBorder(null);
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
+
+        background.add(scroll, BorderLayout.CENTER);
     }
 
     /** Sets the screen to fullscreen based on local device **/

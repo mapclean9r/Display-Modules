@@ -5,25 +5,38 @@ import modules.ModuleAlias;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @ModuleAlias(value = "clock-module-default")
 public class ClockModule implements IncludeModule {
+
     @Override
     public JComponent RunModule() {
-        var panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        var clock = new JLabel("clock-module-default", SwingConstants.CENTER);
-        clock.setFont(clock.getFont().deriveFont(Font.BOLD, 32f));
-        var fmt = new SimpleDateFormat("HH:mm:ss");
-        new Timer(1000, e -> clock.setText(fmt.format(new Date()))).start();
+        JLabel timeLabel = new JLabel("", SwingConstants.CENTER);
+        timeLabel.setFont(new Font("Segoe UI", Font.BOLD, 48));
+        timeLabel.setForeground(Color.WHITE);
+        timeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //todo add config file for locations && mby font size?
-        panel.add(clock, BorderLayout.CENTER);
+        JLabel dateLabel = new JLabel("", SwingConstants.CENTER);
+        dateLabel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        dateLabel.setForeground(new Color(200, 200, 220));
+        dateLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(timeLabel);
+        panel.add(dateLabel);
 
-        //remove print later mby
-        System.out.println("module loaded: " + this.getClass().getAnnotation(ModuleAlias.class).value());
+        Timer timer = new Timer(1000, e -> {
+            LocalDateTime now = LocalDateTime.now();
+            timeLabel.setText(now.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+            dateLabel.setText(now.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy")));
+        });
+        timer.setInitialDelay(0);
+        timer.start();
+
         return panel;
     }
 
