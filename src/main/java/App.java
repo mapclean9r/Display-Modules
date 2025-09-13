@@ -1,3 +1,6 @@
+import core.StartProgram;
+import handlers.ModuleHandler;
+
 import javax.swing.*;
 
 public class App {

@@ -1,3 +1,7 @@
+package core;
+
+import core.ConfirmDialogs;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

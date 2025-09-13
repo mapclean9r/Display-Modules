@@ -1,3 +1,6 @@
+package handlers;
+
+import core.StartProgram;
 import modules.IncludeModule;
 import modules.ModuleAlias;
 import org.reflections.Reflections;
@@ -9,7 +12,7 @@ public class ModuleHandler {
     private final Reflections reflections = new Reflections("modules");
     private final Set<Class<?>> collectedModules = reflections.getTypesAnnotatedWith(ModuleAlias.class);
     private final StartProgram window;
-    
+
     public ModuleHandler(StartProgram startProgram) {
         this.window = startProgram;
         addModulesToFrame();
