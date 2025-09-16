@@ -1,7 +1,0 @@
-{
-  "grid": { "cols": 3, "rows": 2 },
-  "placements": [
-    { "alias": "hello-module-default", "row": 0, "col": 2 },
-    { "alias": "clock-module-default", "row": 1, "col": 1 }
-  ]
-}

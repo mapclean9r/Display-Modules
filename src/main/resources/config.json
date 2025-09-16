@@ -1,13 +1,18 @@
 {
-  "type": "module-config",
+  "grid": {
+    "cols": 3,
+    "rows": 2
+  },
   "modules": [
     {
       "alias": "clock-module-default",
-      "active": true
+      "active": true,
+      "placement": { "row": 1, "col": 1 }
     },
     {
       "alias": "hello-module-default",
-      "active": true
+      "active": true,
+      "placement": { "row": 0, "col": 2 }
     },
     {
       "alias": "todo-module",

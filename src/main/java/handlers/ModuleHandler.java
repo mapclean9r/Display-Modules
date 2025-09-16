@@ -1,7 +1,6 @@
 package handlers;
 
-import config.LayoutConfig;
-import config.ModuleConfig;
+import config.Config;
 import core.StartProgram;
 import modules.IncludeModule;
 import modules.ModuleAlias;
@@ -18,18 +17,18 @@ public class ModuleHandler {
     private final Reflections reflections = new Reflections("modules");
     private final Set<Class<?>> collectedModules = reflections.getTypesAnnotatedWith(ModuleAlias.class);
     private final StartProgram window;
-    private final ModuleConfig moduleConfig;
+    private final Config config;
     private final Map<String, Point> layoutHashmap = new HashMap<>();
 
-    public ModuleHandler(StartProgram startProgram, ModuleConfig moduleConfig, LayoutConfig layoutConfig) {
+    public ModuleHandler(StartProgram startProgram, Config config) {
         this.window = startProgram;
-        this.moduleConfig = moduleConfig;
-        for (int i = 0; i < layoutConfig.getPlacements().size(); i++){
-
-            layoutHashmap.put(layoutConfig.getPlacements().get(i).getAlias(),
+        this.config = config;
+        for (Config.ModuleEntry layoutConfig : config.getModules()){
+            if (!layoutConfig.isActive() || layoutConfig.getPlacement() == null) continue;
+            layoutHashmap.put(layoutConfig.getAlias(),
                     new Point(
-                            layoutConfig.getPlacements().get(i).getRow(),
-                            layoutConfig.getPlacements().get(i).getCol()));
+                            layoutConfig.getPlacement().getRow(),
+                            layoutConfig.getPlacement().getCol()));
         }
         addModulesToFrame();
     }
@@ -52,7 +51,7 @@ public class ModuleHandler {
 
     /** Checks if the module in config is enabled && exists **/
     private boolean isConfigToLoad(String moduleName){
-        for (ModuleConfig.ModuleEntry config : moduleConfig.getModules()){
+        for (Config.ModuleEntry config : config.getModules()){
             //System.out.println(moduleName + " | and | " + config.getAlias());
             if (Objects.equals(moduleName, config.getAlias()) && config.isActive()){
                 return true;

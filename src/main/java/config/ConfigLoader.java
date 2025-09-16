@@ -1,30 +1,27 @@
 package config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class ConfigLoader {
+    private static final ObjectMapper MAPPER = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    public static ModuleConfig loadConfig(String resourcePath) {
-        ObjectMapper mapper = new ObjectMapper();
-        try (InputStream in = ConfigLoader.class.getResourceAsStream(resourcePath)){
-            return mapper.readValue(in, ModuleConfig.class);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not load config file: " + resourcePath, e);
+    public static Config loadConfig(String resourcePath) {
+        try (InputStream in = open(resourcePath)) {
+            return MAPPER.readValue(in, Config.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Could not load combined config: " + resourcePath, e);
         }
     }
 
-    public static LayoutConfig loadLayout(String resourcePath) {
-        try (InputStream in = ConfigLoader.class.getResourceAsStream(resourcePath)) {
-            if (in == null) {
-                throw new IllegalArgumentException("Resource not found: " + resourcePath);
-            }
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(in, LayoutConfig.class);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to load layout config", e);
+    private static InputStream open(String resourcePath) {
+        InputStream in = ConfigLoader.class.getResourceAsStream(resourcePath);
+        if (in == null) {
+            throw new IllegalArgumentException("Resource not found: " + resourcePath);
         }
+        return in;
     }
 }
