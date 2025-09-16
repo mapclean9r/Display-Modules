@@ -13,7 +13,7 @@ public class ConfigLoader {
         try (InputStream in = open(resourcePath)) {
             return MAPPER.readValue(in, Config.class);
         } catch (Exception e) {
-            throw new RuntimeException("Could not load combined config: " + resourcePath, e);
+            throw new RuntimeException("Could not load config: " + resourcePath, e);
         }
     }
 
