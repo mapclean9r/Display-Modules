@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ConfirmDialogs {
+public class ExitDialog {
     public static boolean showExitDialog(JFrame parent, String title, String message) {
         JDialog dialog = new JDialog(parent, true);
         dialog.setUndecorated(true);

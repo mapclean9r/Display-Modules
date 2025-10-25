@@ -61,7 +61,7 @@ public class StartProgram extends JFrame {
 
     /** For dialog - closing app yes/no **/
     private void closeAppDialogOption() {
-        boolean ok = ConfirmDialogs.showExitDialog(this, "Exit application?", "Are you sure you want to exit?");
+        boolean ok = ExitDialog.showExitDialog(this, "Exit application?", "Are you sure you want to exit?");
         if (ok) {
             // exit fullscreen
             if (device != null && device.getFullScreenWindow() == this) {
