@@ -43,13 +43,6 @@ public class CreateGrid extends JPanel {
         relayout();
     }
 
-    /** set fixed size for every cell **/
-    public void setStaticCellSize(Dimension size) {
-        if (size == null || size.width <= 0 || size.height <= 0)
-            throw new IllegalArgumentException("static cell size must be > 0");
-        this.staticCellSize = new Dimension(size);
-        relayout();
-    }
 
     /** Sets component at a fixed row & col. param null to clear the cell. */
     public void setCell(int row, int col, JComponent comp) {
