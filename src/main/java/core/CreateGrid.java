@@ -8,12 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateGrid extends JPanel {
-    private int cols = 3;
-    private int rows = 2;
-    private int hgap = 16, vgap = 16;
+    private int cols, rows;
+    private int heightGap = 16, widthGap = 16;
     private Insets padding = new Insets(16,16,16,16);
     private final Map<Point, JComponent> cells = new HashMap<>();
-    private Dimension staticCellSize = new Dimension(320, 200);
+    private final Dimension cellSize = new Dimension(320, 200);
 
     public CreateGrid() {
         setLayout(new GridBagLayout());
@@ -31,8 +30,8 @@ public class CreateGrid extends JPanel {
 
     /** gaps between each grid block **/
     public void setGaps(int hgap, int vgap) {
-        this.hgap = hgap;
-        this.vgap = vgap;
+        this.heightGap = hgap;
+        this.widthGap = vgap;
         relayout();
     }
 
@@ -58,12 +57,16 @@ public class CreateGrid extends JPanel {
 
     /** Replace only if it already exists, ignore if empty. */
     public void replaceIfPresent(int row, int col, JComponent comp) {
+        // do not delete, mby use for ui later
         Point key = new Point(col, row);
-        if (cells.containsKey(key)) setCell(row, col, comp);
+        if (cells.containsKey(key)){
+            setCell(row, col, comp);
+        }
     }
 
     /** Clear all cells. */
     public void clear() {
+        // do not delete, ui might need it ;)
         cells.clear();
         relayout();
     }
@@ -74,7 +77,7 @@ public class CreateGrid extends JPanel {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(vgap/2, hgap/2, vgap/2, hgap/2);
+        gbc.insets = new Insets(widthGap /2, heightGap /2, widthGap /2, heightGap /2);
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
 
@@ -84,8 +87,8 @@ public class CreateGrid extends JPanel {
 
                 JComponent content = cells.get(new Point(c, r));
                 JComponent cell = (content == null)
-                        ? rigidPlaceholder(staticCellSize)
-                        : wrapAsRigidCard(content, staticCellSize);
+                        ? fixedSizePlaceholder(cellSize)
+                        : wrapAsFixedSizeCard(content, cellSize);
 
                 add(cell, gbc);
             }
@@ -103,7 +106,7 @@ public class CreateGrid extends JPanel {
     }
 
     /** component wrapper: min/pref/max to the static cell size */
-    private JComponent wrapAsRigidCard(JComponent content, Dimension size) {
+    private JComponent wrapAsFixedSizeCard(JComponent content, Dimension size) {
         content.setOpaque(false);
         JPanel card = new JPanel(new BorderLayout()) {
             @Override public Dimension getMinimumSize()  { return size; }
@@ -116,7 +119,7 @@ public class CreateGrid extends JPanel {
     }
 
     /** empty placeholder to keep grid shape */
-    private JComponent rigidPlaceholder(Dimension size) {
+    private JComponent fixedSizePlaceholder(Dimension size) {
         return new JPanel() {
             { setOpaque(false); }
             @Override public Dimension getMinimumSize()  { return size; }
@@ -128,8 +131,8 @@ public class CreateGrid extends JPanel {
     /** preferred size so the grid doesn't stretch */
     @Override
     public Dimension getPreferredSize() {
-        int totalW = padding.left + padding.right  + cols * staticCellSize.width  + (cols - 1) * hgap;
-        int totalH = padding.top  + padding.bottom + rows * staticCellSize.height + (rows - 1) * vgap;
+        int totalW = padding.left + padding.right  + cols * cellSize.width  + (cols - 1) * heightGap;
+        int totalH = padding.top  + padding.bottom + rows * cellSize.height + (rows - 1) * widthGap;
         return new Dimension(totalW, totalH);
     }
 }
